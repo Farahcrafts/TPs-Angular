@@ -1,0 +1,31 @@
+.form-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto 24px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.submit-btn {
+  margin-top: 8px;
+}
+
+.summary-card {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  background-color: #e8f5e9;
+
+  mat-card-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #2e7d32;
+  }
+
+  mat-icon {
+    color: #2e7d32;
+  }
+}

@@ -1,0 +1,71 @@
+<mat-card class="reflexion-card">
+  <mat-card-header>
+    <mat-card-title>Réflexion</mat-card-title>
+    <mat-card-subtitle>
+      Quelles sont les principales différences entre Template-Driven et Reactive Forms ?
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <h3>1. Où vit la logique ?</h3>
+    <p>
+      En <strong>Template-Driven</strong>, la logique de validation est principalement déclarée
+      dans le template HTML via des attributs (<code>required</code>, <code>minlength</code>,
+      directives personnalisées). Le framework crée implicitement les <code>FormControl</code>
+      sous le capot grâce à <code>ngModel</code>.
+    </p>
+    <p>
+      En <strong>Reactive Forms</strong>, la logique est définie explicitement dans la classe
+      TypeScript via <code>FormBuilder</code> / <code>FormGroup</code> / <code>FormControl</code>
+      et les <code>Validators</code>. Le template ne fait que se lier au modèle.
+    </p>
+
+    <h3>2. Modèle synchrone vs asynchrone</h3>
+    <p>
+      Les Reactive Forms sont <strong>synchrones</strong> : la valeur et la validité sont
+      disponibles immédiatement. Les Template-Driven Forms reposent sur <code>ngModel</code>
+      qui met à jour le modèle de manière <strong>asynchrone</strong> (via le cycle de détection
+      de changement), ce qui peut compliquer certains tests.
+    </p>
+
+    <h3>3. Testabilité</h3>
+    <p>
+      Les Reactive Forms sont plus faciles à tester unitairement car toute la logique est dans
+      la classe : on peut valider le formulaire sans rendre le template. Les Template-Driven
+      nécessitent un <code>TestBed</code> complet avec le DOM.
+    </p>
+
+    <h3>4. Formulaires dynamiques</h3>
+    <p>
+      Les Reactive Forms permettent d'ajouter ou retirer des contrôles dynamiquement
+      (<code>FormArray</code>, <code>addControl</code>). C'est possible mais beaucoup plus
+      complexe en Template-Driven.
+    </p>
+
+    <h3>5. Validation personnalisée</h3>
+    <p>
+      En Reactive, on passe simplement une fonction de validation. En Template-Driven, il faut
+      créer une <strong>directive</strong> enregistrée avec <code>NG_VALIDATORS</code>, ce qui
+      demande plus de code boilerplate.
+    </p>
+
+    <h3>6. Scalabilité</h3>
+    <p>
+      Pour les formulaires simples (login, contact), le Template-Driven est rapide à mettre en
+      place. Pour les formulaires complexes (multi-étapes, champs conditionnels, validation
+      croisée), les Reactive Forms offrent un meilleur contrôle et une meilleure maintenabilité.
+    </p>
+
+    <h3>Conclusion : quand utiliser quoi ?</h3>
+    <ul>
+      <li>
+        <strong>Template-Driven</strong> : formulaires simples, prototypage rapide, peu de
+        logique métier.
+      </li>
+      <li>
+        <strong>Reactive Forms</strong> : formulaires complexes, besoin de tests unitaires
+        poussés, validation dynamique, applications d'entreprise.
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

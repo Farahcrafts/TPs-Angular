@@ -1,0 +1,124 @@
+<mat-card class="form-card">
+  <mat-card-header>
+    <mat-card-title>Formulaire d'inscription</mat-card-title>
+    <mat-card-subtitle>Exercice 1 – Template-Driven Forms</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form #form="ngForm" (ngSubmit)="onSubmit(form)">
+
+      <!-- Nom complet -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Nom complet</mat-label>
+        <input matInput
+               name="nom"
+               [(ngModel)]="model.nom"
+               #nom="ngModel"
+               required
+               minlength="3" />
+        <mat-error *ngIf="nom.hasError('required')">
+          Le nom complet est obligatoire
+        </mat-error>
+        <mat-error *ngIf="nom.hasError('minlength') && !nom.hasError('required')">
+          Le nom doit contenir au moins 3 caractères
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Email -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput
+               type="email"
+               name="email"
+               [(ngModel)]="model.email"
+               #emailCtrl="ngModel"
+               required
+               email />
+        <mat-error *ngIf="emailCtrl.hasError('required')">
+          L'email est obligatoire
+        </mat-error>
+        <mat-error *ngIf="emailCtrl.hasError('email') && !emailCtrl.hasError('required')">
+          Format d'email invalide
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Âge -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Âge</mat-label>
+        <input matInput
+               type="number"
+               name="age"
+               [(ngModel)]="model.age"
+               #ageCtrl="ngModel"
+               required
+               [appMinAge]="18" />
+        <mat-error *ngIf="ageCtrl.hasError('required')">
+          L'âge est obligatoire
+        </mat-error>
+        <mat-error *ngIf="ageCtrl.hasError('minAge') && !ageCtrl.hasError('required')">
+          Vous devez avoir au moins 18 ans
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Pays -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Pays</mat-label>
+        <mat-select name="pays"
+                    [(ngModel)]="model.pays"
+                    #paysCtrl="ngModel"
+                    required>
+          <mat-option *ngFor="let pays of countries" [value]="pays">
+            {{ pays }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="paysCtrl.hasError('required')">
+          Veuillez sélectionner un pays
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Bouton soumettre -->
+      <button mat-raised-button
+              color="primary"
+              type="submit"
+              [disabled]="form.invalid"
+              class="full-width submit-btn">
+        S'inscrire
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<!-- Récapitulatif -->
+<mat-card class="summary-card" *ngIf="submitted && summary">
+  <mat-card-header>
+    <mat-card-title>
+      <mat-icon>check_circle</mat-icon>
+      Récapitulatif
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item>
+        <span matListItemTitle>Nom complet</span>
+        <span matListItemLine>{{ summary.nom }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Email</span>
+        <span matListItemLine>{{ summary.email }}</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Âge</span>
+        <span matListItemLine>{{ summary.age }} ans</span>
+      </mat-list-item>
+      <mat-list-item>
+        <span matListItemTitle>Pays</span>
+        <span matListItemLine>{{ summary.pays }}</span>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button color="warn" (click)="reset(form)">
+      Réinitialiser
+    </button>
+  </mat-card-actions>
+</mat-card>

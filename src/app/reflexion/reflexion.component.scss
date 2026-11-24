@@ -1,0 +1,32 @@
+.reflexion-card {
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
+
+  h3 {
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: #1565c0;
+  }
+
+  p {
+    line-height: 1.6;
+    text-align: justify;
+  }
+
+  code {
+    background-color: #f5f5f5;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.9em;
+  }
+
+  ul {
+    padding-left: 20px;
+
+    li {
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+  }
+}

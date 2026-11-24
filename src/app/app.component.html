@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <span>{{ title }}</span>
+  <span class="spacer"></span>
+  <a mat-button routerLink="/template-driven" routerLinkActive="active-link">
+    Exercice 1 – Template
+  </a>
+  <a mat-button routerLink="/reactive" routerLinkActive="active-link">
+    Exercice 2 – Reactive
+  </a>
+  <a mat-button routerLink="/reflexion" routerLinkActive="active-link">
+    Réflexion
+  </a>
+</mat-toolbar>
+
+<main>
+  <router-outlet></router-outlet>
+</main>
